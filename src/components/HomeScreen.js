@@ -4,6 +4,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { AppBar } from '@material-ui/core';
 import axios from 'axios'
+import ProductCard from './ProductCard';
 
 
 
@@ -23,7 +24,12 @@ const HomeScreen = () => {
   const [categories, setCategories] = useState([]);
   const [categoryID, setCategoryID] = useState("227");
   const [productList, setProductList] = useState([]);
+  const [catName , setCatName] = useState('Sale')
   const [error , setError] =useState(false)
+
+const onCategoryChange = (event, value) => {
+    setCategoryID(value);
+  };
 
 
  useEffect(async()=>{
@@ -48,15 +54,16 @@ const HomeScreen = () => {
              )
            ).data;
            console.log(individualCategory);
+           setProductList(individualCategory)
+           
+           
       } catch (error) {
           setError(true)
       }
     
   }, [categoryID]);
 
-  const onCategoryChange =  (event ,value) => {
-     setCategoryID(value);
-   };
+  
 
 if(error){
     return(
@@ -67,7 +74,7 @@ if(error){
 else{
    return (
      <div className={styles.main}>
-         <h1>Our Products</h1>
+         <h1 style={{marginLeft:'30%'}}>Our Products</h1>
        <AppBar position="static" color="transparent">
          <Tabs
            value={categoryID}
@@ -81,7 +88,7 @@ else{
            {categories &&
              categories.map((category) => {
                return (
-                   
+
                  <Tab
                    key={category["category_id"]}
                    value={category["category_id"]}
@@ -89,8 +96,8 @@ else{
                    style={{
                      backgroundImage: `url(${category["category_image"]})`,
                      backgroundSize: "100% 100%",
-                     marginRight: "10px",
-                     borderRadius: "0.3rem",
+                     marginRight: "12px",
+                     borderRadius: '12px',
                      marginBottom: "0.5rem",
                      width: "120px",
                      height: "65px",
@@ -103,6 +110,7 @@ else{
              })}
          </Tabs>
        </AppBar>
+       <ProductCard />
      </div>
    );
 }
