@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import { AppBar, Container } from "@material-ui/core";
+import { AppBar, Grid, Tabs, Tab , Button } from "@material-ui/core";
 import axios from "axios";
-import {Grid} from "@material-ui/core"
 import ProductCard from "./ProductCard";
+import CategorySelect from "./CategorySelect";
 
 const getStyles = makeStyles((theme) => ({
   main: {
@@ -13,19 +11,31 @@ const getStyles = makeStyles((theme) => ({
     width: "100%",
     backgroundColor: theme.palette.background.paper,
   },
+  
+  viewButton:{
+    width:'80%',
+    marginLeft:'50px'
+  },
+  selectionSection:{
+    display:'flex',
+  }
 }));
 
 const HomeScreen = () => {
-  const styles = getStyles();
+  const classes = getStyles();
   const [categories, setCategories] = useState([]);
-  const [categoryID, setCategoryID] = useState("227");
-  const [productList, setProductList] = useState([]);
-  const [catName, setCatName] = useState("Sale");
+  const [categoryID, setCategoryID] = useState("185")
+  const [productList, setProductList] = useState([])
+  const [showMore , setShowMore] = useState(false)
   const [error, setError] = useState(false);
 
   const onCategoryChange = (event, value) => {
     setCategoryID(value);
   };
+
+  const onViewButtonPress=()=>{
+    setShowMore(!showMore)
+  }
 
   useEffect(async () => {
     try {
@@ -50,7 +60,8 @@ const HomeScreen = () => {
         )
       ).data;
       console.log(individualCategory["products"]);
-      setProductList(individualCategory["products"]);
+     setProductList(individualCategory["products"]);
+      
     } catch (error) {
       setError(true);
     }
@@ -60,8 +71,8 @@ const HomeScreen = () => {
     return <h1>Error Occured Cannot Load Page</h1>;
   } else {
     return (
-      <div className={styles.main}>
-        <h1 style={{ marginLeft: "30%" }}>Our Products</h1>
+      <div className={classes.main}>
+        <h1 style={{ marginLeft: "5%" }}>Our Products</h1>
         <AppBar position="static" color="transparent">
           <Tabs
             value={categoryID}
@@ -72,7 +83,7 @@ const HomeScreen = () => {
             scrollButtons="auto"
             aria-label="scrollable auto tabs example"
           >
-            {categories.map((category) => {
+            {categories && categories.map((category) => {
               return (
                 <Tab
                   key={category["category_id"]}
@@ -97,16 +108,17 @@ const HomeScreen = () => {
         </AppBar>
 
         <div style={{ marginTop: "50px" }}>
-          
-            <Grid
-              container
-              direction="column"
-              spacing={3}
-              xs={12}
-              sm={12}
-              md={12}
-            >
-              {productList.map((product) => {
+          <Grid
+            container
+            direction="column"
+            spacing={3}
+            xs={12}
+            sm={12}
+            md={12}
+          >
+            {productList && productList
+              .slice(0, showMore ? productList.length : 3)
+              .map((product) => {
                 return (
                   <Grid key={product["id"]} item>
                     <ProductCard
@@ -117,13 +129,30 @@ const HomeScreen = () => {
                       pSpecialPrice={product["final_price"]}
                       pMrp={product["price"]}
                       pRating={product["rating"]}
+                      pInStock={product["is_in_stock"]}
                     />
                   </Grid>
                 );
               })}
-            </Grid>
-          
+          </Grid>
         </div>
+        <Grid
+          container
+          spacing={1}
+          justifyContent="center"
+          alignItems="center"
+          direction="row"
+        >
+          <Grid item xs={6} sm={6} md={6}>
+            <CategorySelect catList={categories} catID={categoryID} updateCatID={setCategoryID} />
+          </Grid>
+
+          <Grid item xs={6} sm={6} md={6}>
+            <Button className={classes.viewButton} onClick={onViewButtonPress}>
+              {showMore ? `[-] View Less` : `[+] View More`}
+            </Button>
+          </Grid>
+        </Grid>
       </div>
     );
   }
