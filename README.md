@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Happliy Unmarried Interview Assignment-
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is my Submission to the Assignment I was asked to complete for Happily unmarried(Ustraa)
 
-## Available Scripts
+# functionalities that were expected-
 
-In the project directory, you can run:
+[A] Category tabs: Ustraa categories are displayed as tabs, which can be scrolled horizontally.
+Each tab has a different background image. Whenever a category is clicked on, its products
+should be shown in the content below.
+Additionally, on both left and right ends, there is a “View All” button. Clicking on this button takes
+user to a different activity. (Not part of the scope.)
 
-### `yarn start`
+[B] Product list: Below the tabs, a list of products belonging to the selected category are
+shown.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[C] Product objects: In the scope of this assignment, only the following product information has
+to be displayed in the UI:
+● Product image
+● Product name
+● Product weight (gm/ml)
+● Product MRP
+● Product special price
+● Product rating
+● “ADD TO CART” button if product is in stock (click handler is not part of the scope)
+● “OUT OF STOCK” button if product is not in stock (no action to be performed on click)
+Refer to this image for more information:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+[D] The “[+] View More” button: Initially, only 3 products should be shown. Clicking on this
+button should reveal all the remaining products in the list. When expanded, this button should
+change to “[-] View Less” & clicking on it should bring the product list back to its initial state.
 
-### `yarn test`
+[E] Selected category & the “change” button: The row below the product list shows the
+selected category name and a “change” button. Clicking on this button should open a
+drop-down like dialog as shown below. Clicking on any of the categories should switch to the
+respective category tab & dismiss the dialog.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# How to Run the Project on your machine-
+Clone the Repository and in the root or main folder type npm install to install all the node modules
+type npm start after installation is completed and run the project on your local machine
+(or if you use yarn follow their methods)
 
-### `yarn build`
+# Issue with the provided catlouge API-
+The Api call to Essential Products list does not work It didnt fetch any data to display.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
