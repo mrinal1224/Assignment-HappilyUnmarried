@@ -40,8 +40,7 @@ Clone the Repository and in the root or main folder type npm install to install 
 type npm start after installation is completed and run the project on your local machine
 (or if you use yarn follow their methods)
 
-# Issue with the provided catlouge API-
-The Api call to Essential Products list does not work It didnt fetch any data to display.
+
 
 
 
